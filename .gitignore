@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+*/node_modules/
+package-lock.json.backup
+
+# Production build outputs
+dist/
+build/
+frontend/dist/
+backend/target/
+*.jar
+*.war
+*.class
+
+# WhatsApp Web Session & Temp Data (Private Auth Tokens)
+.wwebjs_auth/
+*/.wwebjs_auth/
+.wwebjs_cache/
+*/.wwebjs_cache/
+latest_qr.png
+whatsapp_qr.png
+
+# Environment variables & local configs
+.env
+.env.local
+.env.*.local
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.iml
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
