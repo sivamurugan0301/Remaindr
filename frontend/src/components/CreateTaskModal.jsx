@@ -254,19 +254,19 @@ export default function CreateTaskModal({
   const hourOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-2.5 sm:p-4 animate-in fade-in duration-150">
       <div 
-        className="relative w-full max-w-lg bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200/90 dark:border-slate-800 overflow-hidden my-6 animate-in zoom-in-95 duration-150"
+        className="relative w-full max-w-md sm:max-w-[460px] bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200/90 dark:border-slate-800 overflow-hidden my-auto max-h-[92vh] flex flex-col animate-in zoom-in-95 duration-150 text-xs sm:text-sm"
         onClick={(e) => e.stopPropagation()}
       >
         
         {/* Header */}
-        <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 sm:py-3 border-b border-slate-100 dark:border-slate-800 shrink-0">
           <div>
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
+            <h2 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">
               {isEditMode ? 'Edit Reminder' : 'Create New Reminder'}
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
               {isEditMode 
                 ? 'Update details for this scheduled reminder.' 
                 : 'Choose your reminder type and pick a time.'}
@@ -275,28 +275,28 @@ export default function CreateTaskModal({
           <button
             onClick={onClose}
             aria-label="Close"
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Quick Suggestions Bar (shown in Create mode) */}
         {!isEditMode && templates.length > 0 && (
-          <div className="px-5 py-3 bg-indigo-50/70 dark:bg-indigo-950/40 border-b border-indigo-100 dark:border-indigo-900/50">
-            <div className="flex items-center gap-1.5 mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
-              <span className="text-xs font-bold text-indigo-900 dark:text-indigo-200 tracking-wide uppercase">
+          <div className="px-4 sm:px-5 py-2 bg-indigo-50/70 dark:bg-indigo-950/40 border-b border-indigo-100 dark:border-indigo-900/50 shrink-0">
+            <div className="flex items-center gap-1.5 mb-1.5">
+              <Sparkles className="w-3 h-3 text-indigo-600 dark:text-indigo-400" />
+              <span className="text-[10px] font-bold text-indigo-900 dark:text-indigo-200 tracking-wide uppercase">
                 Quick Suggestions:
               </span>
             </div>
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 scrollbar-none">
               {templates.map((tpl) => (
                 <button
                   key={tpl.id}
                   type="button"
                   onClick={() => handleApplyTemplate(tpl)}
-                  className="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white border border-indigo-200/90 dark:border-indigo-700/80 shadow-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                  className="whitespace-nowrap px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white border border-indigo-200/90 dark:border-indigo-700/80 shadow-xs transition-all cursor-pointer"
                 >
                   + {tpl.label}
                 </button>
@@ -306,11 +306,11 @@ export default function CreateTaskModal({
         )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-5 space-y-4">
+        <form onSubmit={handleSubmit} className="overflow-y-auto px-4 py-3 sm:px-5 sm:py-3.5 space-y-2.5 flex-1">
 
           {/* Reminder Type Selector */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
               Reminder Type
             </label>
             <div className="grid grid-cols-3 gap-2">
@@ -322,13 +322,13 @@ export default function CreateTaskModal({
                     key={tab.id}
                     type="button"
                     onClick={() => setActiveChannel(tab.id)}
-                    className={`flex flex-col items-center justify-center text-center p-2.5 rounded-2xl border text-xs font-semibold transition-all min-h-[72px] cursor-pointer ${
+                    className={`flex flex-col items-center justify-center text-center p-2 rounded-xl border text-xs font-semibold transition-all min-h-[56px] cursor-pointer ${
                       isSelected
                         ? `${tab.activeBg} ring-2 ring-indigo-500/20 shadow-xs`
                         : 'border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50'
                     }`}
                   >
-                    <Icon className={`w-5 h-5 mb-1 ${isSelected ? tab.color : 'text-slate-400'}`} />
+                    <Icon className={`w-4 h-4 mb-0.5 ${isSelected ? tab.color : 'text-slate-400'}`} />
                     <span className="leading-tight text-[11px] font-semibold">{tab.label}</span>
                   </button>
                 );
@@ -359,7 +359,7 @@ export default function CreateTaskModal({
 
           {/* Reminder Title */}
           <div>
-            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+            <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1">
               Reminder Title
             </label>
             <input
@@ -374,15 +374,15 @@ export default function CreateTaskModal({
                   ? 'e.g. Lunch with Sarah' 
                   : 'e.g. Follow up on project'
               }
-              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+              className="w-full px-3 py-2 rounded-xl bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
             />
           </div>
 
           {/* WhatsApp Phone Number with Static +91 Prefix */}
           {activeChannel === 'WHATSAPP' && (
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 mb-1">
-                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2 mb-0.5">
+                <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300">
                   WhatsApp Phone Number
                 </label>
                 <span 
@@ -400,7 +400,7 @@ export default function CreateTaskModal({
                 />
               </div>
               <div className="flex items-center rounded-xl bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500">
-                <span className="px-3.5 py-2.5 bg-slate-100 dark:bg-slate-700/60 text-slate-700 dark:text-slate-200 font-mono font-bold text-sm border-r border-slate-200 dark:border-slate-700/80 select-none">
+                <span className="px-3 py-2 bg-slate-100 dark:bg-slate-700/60 text-slate-700 dark:text-slate-200 font-mono font-bold text-xs sm:text-sm border-r border-slate-200 dark:border-slate-700/80 select-none">
                   +91
                 </span>
                 <input
@@ -413,7 +413,7 @@ export default function CreateTaskModal({
                     setPhone10(digits);
                   }}
                   placeholder="9876543210"
-                  className="w-full px-3.5 py-2.5 bg-transparent text-sm font-mono text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none"
+                  className="w-full px-3 py-2 bg-transparent text-xs sm:text-sm font-mono text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none"
                 />
               </div>
             </div>
@@ -466,9 +466,9 @@ export default function CreateTaskModal({
           )}
 
           {/* Date and 12-Hour AM/PM Time Pickers */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+              <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 {activeChannel === 'CALENDAR' ? 'Event Date' : 'Date'}
               </label>
               <input
@@ -476,23 +476,23 @@ export default function CreateTaskModal({
                 required
                 value={scheduledDate}
                 onChange={(e) => setScheduledDate(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-xl bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                className="w-full px-2.5 py-1.5 rounded-xl bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+              <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 {activeChannel === 'CALENDAR' ? 'Start Time (12h)' : 'Time (12h)'}
               </label>
               
               {/* 12-Hour Selector: Hour : Minute + AM/PM toggle */}
-              <div className="flex items-center gap-1 bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-xl p-1 focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500">
+              <div className="flex items-center gap-1 bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-xl p-0.5 focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500">
                 {/* Hour */}
                 <select
                   value={timeHour}
                   onChange={(e) => setTimeHour(Number(e.target.value))}
                   style={{ colorScheme: 'light dark' }}
-                  className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm font-bold font-mono px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer shadow-xs"
+                  className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-bold font-mono px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer shadow-xs"
                 >
                   {hourOptions.map((h) => (
                     <option key={h} value={h} className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">
@@ -508,7 +508,7 @@ export default function CreateTaskModal({
                   value={timeMinute}
                   onChange={(e) => setTimeMinute(e.target.value)}
                   style={{ colorScheme: 'light dark' }}
-                  className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm font-bold font-mono px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer shadow-xs"
+                  className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-bold font-mono px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer shadow-xs"
                 >
                   {minuteOptions.map((m) => (
                     <option key={m} value={m} className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">
@@ -518,11 +518,11 @@ export default function CreateTaskModal({
                 </select>
 
                 {/* AM / PM Segmented Toggle */}
-                <div className="flex items-center ml-auto bg-slate-200/80 dark:bg-slate-700/80 rounded-lg p-0.5 text-xs font-bold">
+                <div className="flex items-center ml-auto bg-slate-200/80 dark:bg-slate-700/80 rounded-lg p-0.5 text-[11px] font-bold">
                   <button
                     type="button"
                     onClick={() => setTimePeriod('AM')}
-                    className={`px-2 py-1 rounded-md transition-all cursor-pointer ${
+                    className={`px-1.5 py-0.5 rounded-md transition-all cursor-pointer ${
                       timePeriod === 'AM'
                         ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs'
                         : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
@@ -533,7 +533,7 @@ export default function CreateTaskModal({
                   <button
                     type="button"
                     onClick={() => setTimePeriod('PM')}
-                    className={`px-2 py-1 rounded-md transition-all cursor-pointer ${
+                    className={`px-1.5 py-0.5 rounded-md transition-all cursor-pointer ${
                       timePeriod === 'PM'
                         ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs'
                         : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
@@ -549,17 +549,17 @@ export default function CreateTaskModal({
 
           {/* Calendar End Time (12-Hour) & Reminder Offset */}
           {activeChannel === 'CALENDAR' && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               <div>
-                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+                <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   End Time (12h)
                 </label>
-                <div className="flex items-center gap-1 bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-xl p-1 focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500">
+                <div className="flex items-center gap-1 bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-xl p-0.5 focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500">
                   <select
                     value={endHour}
                     onChange={(e) => setEndHour(Number(e.target.value))}
                     style={{ colorScheme: 'light dark' }}
-                    className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm font-bold font-mono px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer shadow-xs"
+                    className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-bold font-mono px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer shadow-xs"
                   >
                     {hourOptions.map((h) => (
                       <option key={h} value={h} className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">
@@ -574,7 +574,7 @@ export default function CreateTaskModal({
                     value={endMinute}
                     onChange={(e) => setEndMinute(e.target.value)}
                     style={{ colorScheme: 'light dark' }}
-                    className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm font-bold font-mono px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer shadow-xs"
+                    className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-bold font-mono px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer shadow-xs"
                   >
                     {minuteOptions.map((m) => (
                       <option key={m} value={m} className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">
@@ -583,11 +583,11 @@ export default function CreateTaskModal({
                     ))}
                   </select>
 
-                  <div className="flex items-center ml-auto bg-slate-200/80 dark:bg-slate-700/80 rounded-lg p-0.5 text-xs font-bold">
+                  <div className="flex items-center ml-auto bg-slate-200/80 dark:bg-slate-700/80 rounded-lg p-0.5 text-[11px] font-bold">
                     <button
                       type="button"
                       onClick={() => setEndPeriod('AM')}
-                      className={`px-2 py-1 rounded-md transition-all cursor-pointer ${
+                      className={`px-1.5 py-0.5 rounded-md transition-all cursor-pointer ${
                         endPeriod === 'AM'
                           ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs'
                           : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
@@ -598,7 +598,7 @@ export default function CreateTaskModal({
                     <button
                       type="button"
                       onClick={() => setEndPeriod('PM')}
-                      className={`px-2 py-1 rounded-md transition-all cursor-pointer ${
+                      className={`px-1.5 py-0.5 rounded-md transition-all cursor-pointer ${
                         endPeriod === 'PM'
                           ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs'
                           : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
@@ -611,13 +611,13 @@ export default function CreateTaskModal({
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+                <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Notify Me
                 </label>
                 <select
                   value={reminderOffset}
                   onChange={(e) => setReminderOffset(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-xl bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 cursor-pointer"
+                  className="w-full px-2.5 py-1.5 rounded-xl bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 cursor-pointer"
                 >
                   <option value={5}>5 min before</option>
                   <option value={15}>15 min before</option>
@@ -631,8 +631,8 @@ export default function CreateTaskModal({
 
           {/* Message / Note */}
           <div>
-            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-              {activeChannel === 'ALARM' ? 'Note (shown when alarm rings)' : activeChannel === 'CALENDAR' ? 'Event Description' : 'Message Text'}
+            <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1">
+              {activeChannel === 'ALARM' ? 'Alarm Screen Note' : activeChannel === 'CALENDAR' ? 'Event Description' : 'Message Text'}
             </label>
             <textarea
               rows={2}
@@ -645,13 +645,13 @@ export default function CreateTaskModal({
                   ? 'Add meeting notes or details...'
                   : 'Write your message text here...'
               }
-              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 resize-none leading-relaxed"
+              className="w-full px-3 py-1.5 rounded-xl bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 resize-none leading-relaxed"
             />
           </div>
 
           {/* Repeat Frequency */}
           <div>
-            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+            <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1">
               Repeat
             </label>
             <div className="grid grid-cols-3 gap-2">
@@ -664,7 +664,7 @@ export default function CreateTaskModal({
                   key={freq.id}
                   type="button"
                   onClick={() => setRepeatFrequency(freq.id)}
-                  className={`py-2 px-1 rounded-xl border text-xs font-medium transition-all text-center cursor-pointer ${
+                  className={`py-1.5 px-1 rounded-xl border text-xs font-medium transition-all text-center cursor-pointer ${
                     repeatFrequency === freq.id
                       ? 'border-indigo-500 bg-indigo-50/70 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 font-semibold'
                       : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/40'
@@ -677,19 +677,19 @@ export default function CreateTaskModal({
           </div>
 
           {/* Actions */}
-          <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-2.5">
+          <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-2 shrink-0">
             <button
               type="button"
               onClick={onClose}
               disabled={isSubmitting}
-              className="px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-5 py-2 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 shadow-md shadow-indigo-600/25 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 cursor-pointer"
+              className="px-4.5 py-1.5 rounded-xl font-semibold text-xs text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 shadow-md shadow-indigo-600/25 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 cursor-pointer"
             >
               {isSubmitting ? 'Saving...' : (isEditMode ? 'Save Changes' : 'Set Reminder')}
             </button>

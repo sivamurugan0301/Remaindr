@@ -186,42 +186,51 @@ export default function WhatsAppConnectModal({ isOpen, onClose, onConnected }) {
             </div>
           )}
 
-          {/* STATE 4: Offline / Error */}
+          {/* STATE 4: Gateway Offline / Cloud Direct Mode */}
           {isOffline && (
-            <div className="py-6 space-y-4">
-              <div className="w-12 h-12 mx-auto rounded-full bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800/60 flex items-center justify-center text-rose-600 dark:text-rose-400">
-                <AlertCircle className="w-6 h-6" />
+            <div className="py-4 space-y-3.5 text-center">
+              <div className="w-12 h-12 mx-auto rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-sm">
+                <Smartphone className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-                  WhatsApp Service Offline
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                  WhatsApp Direct Mode
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-xs mx-auto leading-relaxed">
-                  The local Node.js WhatsApp gateway is not running.
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-sm mx-auto leading-relaxed">
+                  On web deployments like Vercel, you can send any reminder instantly with <b>1-Tap Direct WhatsApp</b> without needing any server gateway!
                 </p>
               </div>
 
-              <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-left text-xs font-mono text-slate-700 dark:text-slate-300">
-                <span className="text-slate-400 block mb-1 font-sans text-[11px]">Run in terminal:</span>
-                cd "e:\Task Scheduler\whatsapp-gateway" && npm start
+              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-left text-xs space-y-2 text-slate-600 dark:text-slate-300">
+                <div className="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span>How to Send Reminders:</span>
+                </div>
+                <p className="leading-relaxed">
+                  Simply tap the green <b>WhatsApp</b> button on any reminder card. It opens your WhatsApp app or WhatsApp Web directly with the recipient and message already filled in!
+                </p>
+                <div className="pt-1.5 border-t border-slate-200/60 dark:border-slate-700/60 text-[11px] text-slate-400">
+                  <span>For background automated server delivery: Start the gateway with <code>npm start</code> in <code>whatsapp-gateway/</code></span>
+                </div>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex gap-2 pt-1">
                 <button
                   type="button"
                   onClick={fetchStatus}
-                  className="flex-1 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 transition-colors"
+                  className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer border border-slate-200 dark:border-slate-700"
                 >
-                  Retry Connection
+                  <RefreshCw className="w-3.5 h-3.5 inline mr-1" />
+                  Retry
                 </button>
                 <a
                   href="https://web.whatsapp.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-1 py-2 rounded-xl text-xs font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 border border-emerald-200 dark:border-emerald-800 transition-colors"
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 shadow-md shadow-emerald-600/25 transition-all"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
-                  <span>Direct Redirect</span>
+                  <span>Open WhatsApp Directly</span>
                 </a>
               </div>
             </div>
