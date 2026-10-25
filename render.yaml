@@ -1,0 +1,26 @@
+services:
+  # Spring Boot Backend Service
+  - type: web
+    name: remaindr-backend
+    env: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    plan: free
+    region: oregon
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: WHATSAPP_GATEWAY_URL
+        fromService:
+          type: web
+          name: remaindr-whatsapp-gateway
+          property: host
+
+  # WhatsApp Web Gateway Microservice
+  - type: web
+    name: remaindr-whatsapp-gateway
+    env: docker
+    dockerfilePath: whatsapp-gateway/Dockerfile
+    dockerContext: whatsapp-gateway
+    plan: free
+    region: oregon

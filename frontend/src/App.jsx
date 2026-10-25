@@ -207,6 +207,15 @@ export default function App() {
     try {
       const updated = await api.triggerTaskNow(id);
       showToast(`Reminder "${updated.title}" activated!`, 'success');
+
+      // If it's a WhatsApp task with a recipient, open WhatsApp directly
+      if (updated.taskType === 'WHATSAPP' && updated.recipient) {
+        const cleanNumber = updated.recipient.replace(/\D/g, '');
+        const text = encodeURIComponent(updated.messageBody || '');
+        const waUrl = `https://wa.me/${cleanNumber}?text=${text}`;
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+      }
+
       await fetchData();
     } catch (err) {
       showToast('Could not start reminder', 'error');
